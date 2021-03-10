@@ -1,0 +1,174 @@
+%%%%%%%%%%%%
+%% Please rename this main.tex file and the output PDF to
+%% [lastname_firstname_graduationyear]
+%% before submission.
+%%
+%% This .tex file is for use with BibLaTeX. Please use
+%% main-bibtex.tex instead if you prefer BibTeX.
+%%%%%%%%%%%%
+
+\documentclass[12pt]{caltech_thesis}
+\usepackage[hyphens]{url}
+\usepackage{lipsum}
+\usepackage{graphicx}
+
+%Zach's packages and commands
+\usepackage{braket}
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage{subfigure}
+
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+
+%%Matt's packages and commands
+
+\newcommand{\note}[1]{\textcolor{blue}{[#1]}}
+
+%% added for gcbh chapter
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{pdflscape}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%% added for high spins
+\usepackage{xspace}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{mathrsfs}
+
+%% added for overtones
+\usepackage{microtype}
+\usepackage{etoolbox}
+
+\newcommand{\xten}[1]{\times 10^{#1}}
+\newcommand{\sub}[1]{_{\mathrm{#1}}}
+\newcommand{\map}[1]{\ensuremath{\mathcal{M}_{\mathrm{#1}}}}
+\newcommand{\distorted}[1]{\hat{#1}}
+\newcommand{\inertial}[1]{\bar{#1}}
+\newcommand{\newgrid}[1]{\breve{#1}}
+\newcommand{\newdistorted}[1]{\grave{#1}}
+\newcommand{\grid}[1]{#1}
+\newcommand{\spin}[1]{\ensuremath{S^{++}_{0.{#1}}}\xspace}
+\newcommand{\generic}{\ensuremath{S^{0.99}_{0.20}}\xspace}
+\newcommand{\roughly}{\mathchar"5218\relax} % Different from \sim in spacing
+
+%% added to template (MG)
+\usepackage[dvipsnames, usenames]{xcolor}
+\definecolor{linkcolor}{rgb}{0.0,0.3,0.5}
+\usepackage[hypertexnames=false, unicode, colorlinks=true, linkcolor=linkcolor, citecolor=linkcolor, filecolor=linkcolor,urlcolor=linkcolor, pdfusetitle]{hyperref}
+\usepackage[all]{hypcap}
+
+
+\usepackage{todonotes}
+
+%% newtx for better-looking Times
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+
+
+%%%% add deeper TOC numbering and deeper inclusion
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{4}
+
+% Must use biblatex to produce the Published Contents and Contributions, per-chapter bibliography (if desired), etc.
+\usepackage[
+    backend=biber,natbib,
+    % IMPORTANT: load a style suitable for your discipline
+    style=numeric-comp,
+    sorting=none
+]{biblatex}
+
+
+\def\aj{\textrm{AJ}}
+\def\apj{\textrm{ApJ}}
+\def\apjl{\textrm{ApJ}}
+\def\apjs{\textrm{ApJS}}
+\def\aap{\textrm{A\&A}}
+\def\aaps{\textrm{A\&AS}}
+\def\mnras{\textrm{MNRAS}}
+\def\prd{\textrm{PRD}}
+\def\prl{\textrm{PRL}}
+\def\prx{\textrm{PRX}}
+\def\nat{\textrm{Nature}}
+\def\cqg{\textrm{CQG}}
+\def\grg{\textrm{GRG}}
+\def\lrr{\textrm{LRR}}
+%%
+\def\ssr{\textrm{Space Sci. Rev.}}
+\def\bain{\textrm{Bull. Astron. Inst. Netherlands}}
+\def\apss{\textrm{Ap\&SS}}
+\def\aapr{\textrm{A\&A Rev.}}
+\def\pasj{\textrm{PASJ}}
+
+
+
+% Name of your .bib file(s)
+\addbibresource{ownpubs.bib}
+\addbibresource{references.bib}
+
+\begin{document}
+
+\title{Gravitational Wave Signatures of Black Hole Physics}
+\author{Zachary Mark}
+
+
+\degreeaward{Doctor of Philosophy}                 % Degree to be awarded
+\university{California Institute of Technology}    % Institution name
+\address{Pasadena, California}                     % Institution address
+\unilogo{caltech.png}                                 % Institution logo
+\copyyear{2021}  % Year (of graduation) on diploma
+\defenddate{December 4, 2020}          % Date of defense
+\orcid{0000-0003-2300-893X}
+
+
+%% IMPORTANT: Select ONE of the rights statement below.
+\rightsstatement{All rights reserved}
+% \rightsstatement{All rights reserved except where otherwise noted}
+% \rightsstatement{Some rights reserved. This thesis is distributed under a [name license, e.g., ``Creative Commons Attribution-NonCommercial-ShareAlike License'']}
+
+%%  If you'd like to remove the Caltech logo from your title page, simply remove the "[logo]" text from the maketitle command
+\maketitle[logo]
+%\maketitle
+
+%% acknowledgements
+\begin{acknowledgements} 	 
+  \input{ackn}
+\end{acknowledgements}
+
+%% abstract
+\begin{abstract}
+WRITE ABSTRACT
+  
+\end{abstract}
+
+%% Uncomment the `iknowhattodo' option to dismiss the instruction in the PDF.
+\begin{publishedcontent}[iknowwhattodo]
+% List your publications and contributions here.
+  \nocite{Scheel:2014ina,Giesler:2017uyu,Giesler:2019uxc,Isi:2019aib,
+    Lovelace:2014twa,Bhagwat:2017tkm}
+\end{publishedcontent}
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+\printnomenclature
+
+\mainmatter
+
+%%%% comment/uncomment to include chapter in compilation
+%\input{chapter_KN_QNM/chapter_KN_QNM}
+%\input{chapter_extremal/chapter_extremal}
+%\input{chapter_echo/chapter_echo}
+\input{chapter_noise_sub/chapter_noise_sub}
+
+
+\printindex
+
+%\theendnotes
+
+\end{document}
