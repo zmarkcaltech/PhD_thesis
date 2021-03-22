@@ -11,9 +11,9 @@ f_{\rm merger} \simeq 40\,\left(\frac{3}{1+z}\right)\left(\frac{100\,M_\odot}{M_
 \end{equation}
 where $z$ is the cosmological redshift and $M_{\rm tot}$ is the total mass of the system. The inspiral portion of binary neutron star mergers, necessary for detecting early warnings of the mergers, also falls in the sub-100 Hz regime. 
 
-Unfortunately, the aLIGO is not operating at the fundamental limit of its sensitivity in the important sub-100 Hz band. Figure 
+Unfortunately, the Advanced LIGO (aLIGO) is not operating at the fundamental limit of its sensitivity in the important sub-100 Hz band. Figure 
 \ref{fig:noiseBudget} 
-shows the noise budget of aLIGO during its first observing run. The fundamental limit of the detector sensitivity is determined by the quantum (grey trace) and the thermal (blue trace) noise. The quantum and thermal noise only dominate the measured noise (red trace) above 100 Hz. In the 10-20 Hz band the measured noise (red trace) is nearly two orders of magnitude larger than the quantum and thermal noise.
+shows the noise budget of aLIGO during its first observing run. The fundamental limit of the detector sensitivity is determined by the quantum (grey trace) and the thermal (blue trace) noise~\cite{Martynov:16}. The quantum and thermal noise only dominate the measured noise (red trace) above 100 Hz. In the 10-20 Hz band the measured noise (red trace) is nearly two orders of magnitude larger than sum of the quantum and thermal noise.
 
 \begin{figure}[htbp]
    \centering
@@ -23,7 +23,7 @@ shows the noise budget of aLIGO during its first observing run. The fundamental 
    \label{fig:noiseBudget}
 \end{figure}
 
-The quantum and thermal noise is unsubtractable, meaning that there is no model (even in theory) that can predict them using auxiliary measurements of the detector. All other noise sources are subtractable, although the models necessary to predict them may be extremely complicated and difficult to deduce after constructing the detector. For example seismic perturbations and cross-couplings in the auxiliary control loops may contaminate the GW readout channel, known as DARM, via numerous different nonlinear coupling mechanisms.
+The quantum and thermal noise is unsubtractable, meaning that there is no model (even in theory) that can predict them using auxiliary measurements of the detector. All other noise sources are subtractable, although the models necessary to predict them may be extremely complicated and difficult to deduce after constructing the detector. For example seismic perturbations and cross-couplings in the auxiliary control loops may contaminate the GW readout channel, ie the differential arm (DARM) length readout, via numerous different nonlinear coupling mechanisms.
 
 \begin{figure}[htbp]
    \centering
@@ -58,15 +58,17 @@ The quantum and thermal noise is unsubtractable, meaning that there is no model 
 
 For example, as shown in Figure 
 \ref{fig:a2l}, 
-angular motions in the mirror $\Delta \Theta (t)$ couple bilinearly with displacements $\Delta y (t)$ in the beamspot from the rotational pivot to mimic a fluctuation in length $\Delta L (t)=\Delta\Theta(t) \Delta y(t)$. As another example, shown in 
+angular motions in the mirror $\Delta \theta (t)$ couple bilinearly with displacements $\Delta y (t)$ in the beamspot from the rotational pivot to mimic a fluctuation in length $\Delta L (t)=\Delta\theta(t) \Delta y(t)$. As another example, shown in 
 Figure \ref{fig:scattering}, 
-stray light from the main beam can scatter off objects near the interferometer moving on seismic time scales and recombine with the main beam producing light fields $\Delta E$ phase shifted from the main field by 
+stray light from the main beam can scatter off objects near the interferometer moving on seismic time scales and recombine with the main beam, producing light fields $\Delta E$ phase shifted from the main field by 
 \begin{equation}
-\sin \left[4\pi {\rm i}\frac{\Delta x(t)}{\lambda} \right],
+\sin \left[4\pi \frac{\Delta x(t)}{\lambda} \right],
 \end{equation}
 where $\lambda$ is the laser wavelength and $\Delta x(t)$ is the relative displacement between the mirror and the scattering objects. The scattered light fields $\Delta E$ can up-scatter the low-frequency seismic motion $\Delta x(t)$ into DARM. 
 
-Our approach is to remove the subtractable noise offline by post-processing the data. Linear regression has been tried with some success \cite{lin_reg}, but since the couplings are nonlinear in nature, non-linear regression should have more success. Neural networks are a form of non-linear regression that has had success in everything from image recognition \cite{10.1007/978-981-15-3020-3_23} to natural language processing \cite{FATHI2018229} to predicting financial markets \cite{siaminamini2018forecasting} (which is actually a somewhat similar problem to reducing the noise in DARM)
+In both situations, monitoring auxiliary channels can allow us to subtract the noise they cause.  We often refer to these auxiliary channels as witness channels and the noise they cause as the target channel. For example in the bilinear noise mechanism, the spot displacement $\Delta y$ and the angular motion of the mirror $\Delta \theta$ are witnesses channels and the length change $\Delta L$ is the target channel. 
+
+Our approach is to remove the subtractable noise offline by measuring auxiliary channels, processing them to calculate the subractable noise, and then removing it. Linear regression has been tried with some success \cite{lin_reg}, but since the couplings are nonlinear in nature, non-linear regression may lead to better performance. Neural networks are a form of non-linear regression that has had success in everything from image recognition \cite{10.1007/978-981-15-3020-3_23} to natural language processing \cite{FATHI2018229} to predicting financial markets \cite{siaminamini2018forecasting} (which is actually a somewhat similar problem to reducing the noise in DARM)
 
 \section{Mock Data}
 
@@ -187,7 +189,7 @@ The network used to achieve this subtraction, shown in Figure \ref{fig:bandstop_
 
 \begin{figure}[htbp]
    \centering
-   \includegraphics[width=\columnwidth]{chapter_noise_sub/etc/bandstop_ASD}
+   \includegraphics[width=\columnwidth]{chapter_noise_sub/etc/Filter_spectra}
    \caption{Amplitude Spectral densities illustrating subtraction for a bandstop filtering mock data. Outside the bandstop, we achieve roughly a factor of 100 reduction between the target/neural network prediction and the residual between the target and prediction}
    \label{fig:bandstop_ASD}
 \end{figure}
@@ -222,7 +224,7 @@ We show results for 1,2,4, 8,16, and 32 pairs of witnesses. We find decreasing e
    \includegraphics[width=.7\columnwidth]{chapter_noise_sub/etc/spectra1C}
     \includegraphics[width=.7\columnwidth]{chapter_noise_sub/etc/spectra2C}
      \includegraphics[width=.7\columnwidth]{chapter_noise_sub/etc/spectra4C}
-   \caption{Amplitude Spectral densities illustrating subtraction for the colored bilinear mock data with 1 (top panel), 2 (middle panel), and 4 (bottom panel) pairs. At 10 Hz, we achieve a factor of 20 reduction (1 pair),  RESUME HERE}
+   \caption{Amplitude Spectral densities illustrating subtraction for the colored bilinear mock data with 1 (top panel), 2 (middle panel), and 4 (bottom panel) pairs. At 10 Hz, we achieve a factor of 20 reduction (1 pair)}
    \label{fig:ASD1}
 \end{figure}
 
