@@ -121,7 +121,7 @@
 \address{Pasadena, California}                     % Institution address
 \unilogo{caltech.png}                                 % Institution logo
 \copyyear{2021}  % Year (of graduation) on diploma
-\defenddate{December 4, 2020}          % Date of defense
+\defenddate{March 29, 2021}          % Date of defense
 \orcid{0000-0003-2300-893X}
 
 
@@ -141,16 +141,24 @@
 
 %% abstract
 \begin{abstract}
-WRITE ABSTRACT
+Gravitational wave observations are opening the door to test general relativity in regimes far less common than the weak gravitational fields that we experience in the solar system. The first part of this thesis addresses the broad issue of how different exotic predictions of general relativity imprint themselves in gravitational waves. 
+
+The ringdown portion of a binary black hole merger is dominated by superposition of quasinormal modes, the resonant modes of a perturbed black hole. The quasinormal mode spectrum of a perturbed black hole mostly reflects the spacetime geometry near the photon orbits. Chapter 2 of this thesis develops a new method for calculating quasinormal mode frequencies for weakly charged, rotating black holes.  Chapter 3 uses a variety of analytic approximations to calculate the charged, rotating quasinormal mode frequencies other cases, including nearly extremal black holes.
+
+The event horizon is one of the most unique predictions of general relativity and it unsurprisingly does not imprint itself in gravitational wave emission. However, alternatives to black holes know as exotic compact objects do leave a unique signature in the form of echoes following the initial signal. Chapter 4 develops a formalism to understand and calculate these echoes.
+
+The second part of this thesis focuses on reducing the noise in gravitational wave measurements using neural networks. Chapter 5 demonstrates on mock data how simple neural networks can use auxiliary measurements from the detector to predict unmodeled noise which can be subtracted offline.
   
 \end{abstract}
 
+
+%remember to uncomment here
 %% Uncomment the `iknowhattodo' option to dismiss the instruction in the PDF.
-\begin{publishedcontent}[iknowwhattodo]
+%\begin{publishedcontent}[iknowwhattodo]
 % List your publications and contributions here.
-  \nocite{Scheel:2014ina,Giesler:2017uyu,Giesler:2019uxc,Isi:2019aib,
-    Lovelace:2014twa,Bhagwat:2017tkm}
-\end{publishedcontent}
+%  \nocite{Scheel:2014ina,Giesler:2017uyu,Giesler:2019uxc,Isi:2019aib,
+ %   Lovelace:2014twa,Bhagwat:2017tkm}
+%\end{publishedcontent}
 
 
 \tableofcontents
@@ -161,9 +169,10 @@ WRITE ABSTRACT
 \mainmatter
 
 %%%% comment/uncomment to include chapter in compilation
-%\input{chapter_KN_QNM/chapter_KN_QNM}
-%\input{chapter_extremal/chapter_extremal}
-%\input{chapter_echo/chapter_echo}
+\input{chapter_intro/chapter_intro}
+\input{chapter_KN_QNM/chapter_KN_QNM}
+\input{chapter_extremal/chapter_extremal}
+\input{chapter_echo/chapter_echo}
 \input{chapter_noise_sub/chapter_noise_sub}
 
 
